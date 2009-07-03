@@ -1,0 +1,47 @@
+<?php
+// $Author: wishcraft $
+//  ------------------------------------------------------------------------ //
+//                XOOPS - PHP Content Management System                      //
+//                    Copyright (c) 2000 XOOPS.org                           //
+//                       <http://www.xoops.org/>                             //
+//  ------------------------------------------------------------------------ //
+//  This program is free software; you can redistribute it and/or modify     //
+//  it under the terms of the GNU General Public License as published by     //
+//  the Free Software Foundation; either version 2 of the License, or        //
+//  (at your option) any later version.                                      //
+//                                                                           //
+//  You may not change or alter any portion of this comment or credits       //
+//  of supporting developers from this source code or any supporting         //
+//  source code which is considered copyrighted (c) material of the          //
+//  original comment or credit authors.                                      //
+//                                                                           //
+//  This program is distributed in the hope that it will be useful,          //
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
+//  GNU General Public License for more details.                             //
+//                                                                           //
+//  You should have received a copy of the GNU General Public License        //
+//  along with this program; if not, write to the Free Software              //
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
+//  ------------------------------------------------------------------------ //
+// Author: Simon Roberts (AKA wishcraft)                                     //
+// URL: http://www.chronolabs.org.au                                         //
+// Project: The XOOPS Project                                                //
+// ------------------------------------------------------------------------- //
+
+	define('_MI_SPIDERS_DIRNAME','spiders');
+	
+	define('_MI_SPIDERS_NAME','Robot Manager');
+	define('_MI_SPIDERS_DESCRIPTION','This module is for robot management');	
+	define('_MI_SPIDERS_LOGON', 'Logon Session');
+	define('_MI_SPIDERS_LOGONDESC', 'When a robots agent is detected log the bot in under its username.');	
+	
+	define('_MI_SPIDERS_MM1', 'Statistics');
+	define('_MI_SPIDERS_MM2', 'Last Here Report');	
+	define('_MI_SPIDERS_ADMINMENU1', 'Add a Robot');
+	define('_MI_SPIDERS_ADMINMENU2', 'Import Robot Definitions');		
+	
+	define('_MI_SPIDERS_GROUP_TYPE', 'Spider');
+	define('_MI_SPIDERS_GROUP_NAME', 'Robots, Crawlers & Spiders');
+	define('_MI_SPIDERS_GROUP_DESCRIPTION', 'Robots, Crawlers & Spiders that scan your website and have authority.');	
+?>
