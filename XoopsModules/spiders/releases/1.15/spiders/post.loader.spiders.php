@@ -105,7 +105,7 @@
 
 			if (is_object($robot))
 				if ($robot->isOnline())
-					$dos_crsafe .= $spider->getVar('robot-exclusion-useragent').'|'.ucfirst($spider->getVar('robot-exclusion-useragent')).'|';
+					$dos_crsafe .= $spider->getVar('robot-exclusion-useragent').'|'.ucfirst($spider->getVar('robot-safeuseragen')).'|';
 			}
 		}		
 	}
@@ -116,11 +116,24 @@
 			$config_handler =& xoops_gethandler('config');
 			$criteria = CriteriaCompo(new Criteria('conf_name', 'dos_crsafe'), "AND");
 			$criteria->add(new Criteria('conf_modid', $module->getVar('mid')));
+			$ret = array();
 			if ($config_handler->getConfigCount($criteria)>0) {
 				$configs = $config_handler->getConfigs($criteria);
 				if (is_object($configs[0])) {
-					$configs[0]->setVar('conf_value', '/(msnbot|Googlebot|'.$dos_crsafe.'Yahoo! Slurp)/i');
-					$config_handler->insertConfig($configs[0]);
+					if (!strpos($configs[0]->getVar('conf_value'), $dos_crsafe)) {
+						$buf = explode('|', $dos_crsafe);
+						$bufb = explode('|', $configs[0]->getVar('conf_value'));
+						if (count($bufb)>1) {
+							foreach($bufb as $id => $pagent) {
+								$ret[] = $pagent;
+								if ($id==2) 
+									foreach($buf as $id => $pagentb) 
+										$ret[] = $pagentb;
+							}
+							$configs[0]->setVar('conf_value', implode('|', $ret));
+							$config_handler->insertConfig($configs[0]);
+						}
+					}
 				}
 			}
 		
