@@ -1,0 +1,43 @@
+^ docs
+$ htdocs
+^ docs\dirlist.txt
+^ docs\End User License.pdf
+^ docs\INSTALL
+^ docs\Terms Cond 1.2c.pdf
+$ htdocs\modules
+$ htdocs\modules\spiders
+$ htdocs\modules\spiders\admin
+$ htdocs\modules\spiders\class
+$ htdocs\modules\spiders\images
+$ htdocs\modules\spiders\include
+$ htdocs\modules\spiders\index.php
+$ htdocs\modules\spiders\language
+$ htdocs\modules\spiders\post.loader.spiders.php
+$ htdocs\modules\spiders\preloads
+$ htdocs\modules\spiders\sql
+$ htdocs\modules\spiders\templates
+$ htdocs\modules\spiders\xoops_version.php
+$ htdocs\modules\spiders\admin\admin_header.php
+$ htdocs\modules\spiders\admin\index.php
+$ htdocs\modules\spiders\admin\menu.php
+$ htdocs\modules\spiders\admin\resources
+$ htdocs\modules\spiders\admin\resources\robots-all.txt
+$ htdocs\modules\spiders\admin\resources\Spiders Agent's List.url
+$ htdocs\modules\spiders\class\spiders.php
+$ htdocs\modules\spiders\class\spiders_user.php
+$ htdocs\modules\spiders\images\import.png
+$ htdocs\modules\spiders\images\left_both.gif
+$ htdocs\modules\spiders\images\right_both.gif
+$ htdocs\modules\spiders\images\spiders_slogo.png
+$ htdocs\modules\spiders\include\forms.php
+$ htdocs\modules\spiders\include\functions.php
+$ htdocs\modules\spiders\include\install.php
+$ htdocs\modules\spiders\include\uninstall.php
+$ htdocs\modules\spiders\include\update.php
+$ htdocs\modules\spiders\language\english
+$ htdocs\modules\spiders\language\english\admin.php
+$ htdocs\modules\spiders\language\english\modinfo.php
+$ htdocs\modules\spiders\preloads\core.php
+$ htdocs\modules\spiders\preloads\index.html
+$ htdocs\modules\spiders\sql\spiders.sql
+$ htdocs\modules\spiders\templates\spiders_index.html
