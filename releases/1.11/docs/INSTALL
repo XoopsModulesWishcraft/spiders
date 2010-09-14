@@ -1,0 +1,63 @@
+:: MODULE :: SPIDERS - 1.10
+
+:: AUTHOR :: simon@chronolabs.org.au
+
+:: PUBLISHER :: simon@chronolabs.org.au
+
+:: DATE :: 3/5/2010
+
+:: INSTALLATION
+
+Copy the folder contained within the archives htdocs folder into your xoops root path. The following files marked with an $ are vital to 
+the runtime operation of the spiders module. The ones marked with a # are for a system patch in bugs in 2.4.4 series and earlier with the 
+eractica of early releases.
+
+For xoops 2.3 you need to execute the file post.loader.spiders.php after the common file loads in xoops 2.3, in xoops 2.4 a preload is used 
+there is no configuration.
+
+---[ xoops2.3_spiders_1.10.zip ]----------------------------------------------------------------------------------------------------------------
+
+
+^ docs
+$ htdocs
+^ docs\dirlist.txt
+^ docs\End User License.pdf
+^ docs\INSTALL
+^ docs\Terms Cond 1.2c.pdf
+$ htdocs\modules
+$ htdocs\modules\spiders
+$ htdocs\modules\spiders\admin
+$ htdocs\modules\spiders\class
+$ htdocs\modules\spiders\images
+$ htdocs\modules\spiders\include
+$ htdocs\modules\spiders\index.php
+$ htdocs\modules\spiders\language
+$ htdocs\modules\spiders\post.loader.spiders.php
+$ htdocs\modules\spiders\preloads
+$ htdocs\modules\spiders\sql
+$ htdocs\modules\spiders\templates
+$ htdocs\modules\spiders\xoops_version.php
+$ htdocs\modules\spiders\admin\admin_header.php
+$ htdocs\modules\spiders\admin\index.php
+$ htdocs\modules\spiders\admin\menu.php
+$ htdocs\modules\spiders\admin\resources
+$ htdocs\modules\spiders\admin\resources\robots-all.txt
+$ htdocs\modules\spiders\admin\resources\Spiders Agent's List.url
+$ htdocs\modules\spiders\class\spiders.php
+$ htdocs\modules\spiders\class\spiders_user.php
+$ htdocs\modules\spiders\images\import.png
+$ htdocs\modules\spiders\images\left_both.gif
+$ htdocs\modules\spiders\images\right_both.gif
+$ htdocs\modules\spiders\images\spiders_slogo.png
+$ htdocs\modules\spiders\include\forms.php
+$ htdocs\modules\spiders\include\functions.php
+$ htdocs\modules\spiders\include\install.php
+$ htdocs\modules\spiders\include\uninstall.php
+$ htdocs\modules\spiders\include\update.php
+$ htdocs\modules\spiders\language\english
+$ htdocs\modules\spiders\language\english\admin.php
+$ htdocs\modules\spiders\language\english\modinfo.php
+$ htdocs\modules\spiders\preloads\core.php
+$ htdocs\modules\spiders\preloads\index.html
+$ htdocs\modules\spiders\sql\spiders.sql
+$ htdocs\modules\spiders\templates\spiders_index.html
