@@ -28,49 +28,26 @@
 // URL: http://www.chronolabs.org.au                                         //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
-	
-	
-	$results = NULL;
-	
-	if (!function_exists('spiders_apimethod')) {
-		function spiders_apimethod() {
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="soap")
-					return $ext;
-			}
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="curl")
-					return $ext;
-			}
-			return 'json';
-		}
+
+include_once("../../../mainfile.php");
+include_once(XOOPS_ROOT_PATH."/class/xoopsmodule.php");
+include_once(XOOPS_ROOT_PATH."/include/cp_functions.php");
+include_once('../include/functions.php');
+
+if ( $xoopsUser ) {
+	$xoopsModule = XoopsModule::getByDirname('spiders');
+	if ( !$xoopsUser->isAdmin($xoopsModule->mid()) ) { 
+		redirect_header(XOOPS_URL."/",3,_NOPERM);
+		exit();
 	}
-	
-	if (is_object($GLOBALS['xoopsUser'])) {
-		
-		$modulehandler =& xoops_gethandler('module');
-		$confighandler =& xoops_gethandler('config');
-		$xoModule = $modulehandler->getByDirname('spiders');
-		$xoConfig = $confighandler->getConfigList($xoModule->getVar('mid'),false);
-	
-		if (in_array($xoConfig['bot_group'], $GLOBALS['xoopsUser']->getGroups())) 
-			if ($xoConfig['xortify_shareme']==true) {
-				xoops_load('cache');
-				if (!$result = XoopsCache::read('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'])) {
-					// Connect to API
-					$api = spiders_apimethod();
-					include_once($GLOBALS['xoops']->path('/modules/spiders/class/'.$api.'.php'));
-					$func = strtoupper($api).'SpidersExchange';
-					$exchange = new $func;
-					
-					//Recieve From API
-					$result = $exchange->getSEOLinks();
-					XoopsCache::write('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'], $result, 1200);
-				}
-				$GLOBALS['spiderTpl'] = new XoopsTpl();
-				$GLOBALS['spiderTpl']->assign('spiderseo', $result);
-				$GLOBALS['spiderTpl']->display('db:spiders_footer_seo.html');
-			}
-	}		
-	
+} else {
+	redirect_header(XOOPS_URL."/",3,_NOPERM);
+	exit();
+}
+if ( file_exists("../language/".$xoopsConfig['language']."/admin.php") ) {
+	include_once("../language/".$xoopsConfig['language']."/admin.php");
+} else {
+	include_once("../language/english/admin.php");
+}
+$myts =& MyTextSanitizer::getInstance();
 ?>

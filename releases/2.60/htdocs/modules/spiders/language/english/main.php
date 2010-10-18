@@ -28,49 +28,18 @@
 // URL: http://www.chronolabs.org.au                                         //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
-	
-	
-	$results = NULL;
-	
-	if (!function_exists('spiders_apimethod')) {
-		function spiders_apimethod() {
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="soap")
-					return $ext;
-			}
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="curl")
-					return $ext;
-			}
-			return 'json';
-		}
-	}
-	
-	if (is_object($GLOBALS['xoopsUser'])) {
-		
-		$modulehandler =& xoops_gethandler('module');
-		$confighandler =& xoops_gethandler('config');
-		$xoModule = $modulehandler->getByDirname('spiders');
-		$xoConfig = $confighandler->getConfigList($xoModule->getVar('mid'),false);
-	
-		if (in_array($xoConfig['bot_group'], $GLOBALS['xoopsUser']->getGroups())) 
-			if ($xoConfig['xortify_shareme']==true) {
-				xoops_load('cache');
-				if (!$result = XoopsCache::read('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'])) {
-					// Connect to API
-					$api = spiders_apimethod();
-					include_once($GLOBALS['xoops']->path('/modules/spiders/class/'.$api.'.php'));
-					$func = strtoupper($api).'SpidersExchange';
-					$exchange = new $func;
-					
-					//Recieve From API
-					$result = $exchange->getSEOLinks();
-					XoopsCache::write('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'], $result, 1200);
-				}
-				$GLOBALS['spiderTpl'] = new XoopsTpl();
-				$GLOBALS['spiderTpl']->assign('spiderseo', $result);
-				$GLOBALS['spiderTpl']->display('db:spiders_footer_seo.html');
-			}
-	}		
-	
+
+define('_MA_SPIDERS_NONETVISIT','No Net Visit');
+define('_MA_SPIDERS_NOVISIT','No Visit');
+define('_MA_SPIDERS_SPF_NAME','<a href="%s/userinfo.php?uid=%s">%s</a>');
+define('_MA_SPIDERS_LASTINSEO','<a href="%s">%s</a>');
+
+define('_MA_SPIDERS_NAME', 'Robot Name');
+define('_MA_SPIDERS_VALUE', 'Score');
+define('_MA_SPIDERS_LASTIN', 'Local Last In');
+define('_MA_SPIDERS_LASTNETIN', 'Net Last In');
+define('_MA_SPIDERS_HERELAST', 'Last Here');
+
+define('_AM_SPIDERS_COMPARISONFINISHED', 'Robot Spider Charter Comparison Finished!');
+
 ?>
