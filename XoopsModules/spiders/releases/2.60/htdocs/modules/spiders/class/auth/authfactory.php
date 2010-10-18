@@ -28,49 +28,39 @@
 // URL: http://www.chronolabs.org.au                                         //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
-	
-	
-	$results = NULL;
-	
-	if (!function_exists('spiders_apimethod')) {
-		function spiders_apimethod() {
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="soap")
-					return $ext;
+
+class XortifyAuthFactory
+{
+
+	/**
+	 * Get a reference to the only instance of authentication class
+	 * 
+	 * if the class has not been instantiated yet, this will also take 
+	 * care of that
+	 * 
+	 * @static
+	 * @return      object  Reference to the only instance of authentication class
+	 */
+	function &getAuthConnection($uname, $xortify_auth_method = 'soap')
+	{
+		static $auth_instance;		
+		if (!isset($auth_instance)) {
+			require_once XOOPS_ROOT_PATH.'/modules/xortify/class/auth/auth.php';
+			// Verify if uname allow to bypass LDAP auth 
+			$file = XOOPS_ROOT_PATH . '/modules/xortify/class/auth/auth_' . $xortify_auth_method . '.php';			
+			require_once $file;
+			$class = 'XortifyAuth' . ucfirst($xortify_auth_method);
+			switch ($xortify_auth_method) {
+				case 'soap';
+					$dao = null;
+					break;
+
 			}
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="curl")
-					return $ext;
-			}
-			return 'json';
+			$auth_instance = new $class($dao);
 		}
+		return $auth_instance;
 	}
-	
-	if (is_object($GLOBALS['xoopsUser'])) {
-		
-		$modulehandler =& xoops_gethandler('module');
-		$confighandler =& xoops_gethandler('config');
-		$xoModule = $modulehandler->getByDirname('spiders');
-		$xoConfig = $confighandler->getConfigList($xoModule->getVar('mid'),false);
-	
-		if (in_array($xoConfig['bot_group'], $GLOBALS['xoopsUser']->getGroups())) 
-			if ($xoConfig['xortify_shareme']==true) {
-				xoops_load('cache');
-				if (!$result = XoopsCache::read('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'])) {
-					// Connect to API
-					$api = spiders_apimethod();
-					include_once($GLOBALS['xoops']->path('/modules/spiders/class/'.$api.'.php'));
-					$func = strtoupper($api).'SpidersExchange';
-					$exchange = new $func;
-					
-					//Recieve From API
-					$result = $exchange->getSEOLinks();
-					XoopsCache::write('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'], $result, 1200);
-				}
-				$GLOBALS['spiderTpl'] = new XoopsTpl();
-				$GLOBALS['spiderTpl']->assign('spiderseo', $result);
-				$GLOBALS['spiderTpl']->display('db:spiders_footer_seo.html');
-			}
-	}		
-	
+
+}
+
 ?>

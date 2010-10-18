@@ -28,49 +28,32 @@
 // URL: http://www.chronolabs.org.au                                         //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
+
+function xoops_module_pre_install_spiders(&$module) {
+
+	$group_handler = &xoops_gethandler( 'group' );
+		
+	$group =& $group_handler->create();
+	$group->setVar('name', _MI_SPIDERS_GROUP_NAME);
+	$group->setVar('description', _MI_SPIDERS_GROUP_DESCRIPTION);
+	$group->setVar('group_type', _MI_SPIDERS_GROUP_TYPE);
+	@$group_handler->insert($group);
 	
+	// Requested by Trabis
+	$groupperm_handler = &xoops_gethandler( 'groupperm' );
+	$criteria = new Criteria('gperm_groupid', XOOPS_GROUP_USERS);
+	$gperms = $groupperm_handler->getObjects($criteria);
 	
-	$results = NULL;
-	
-	if (!function_exists('spiders_apimethod')) {
-		function spiders_apimethod() {
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="soap")
-					return $ext;
-			}
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="curl")
-					return $ext;
-			}
-			return 'json';
-		}
+	foreach($gperms as $perm) {
+		$ngperm = $groupperm_handler->create();
+		foreach(array('gperm_itemid', 'gperm_modid', 'gperm_name') as $pras)
+			$ngperm->setVar($pras, $perm->getVar($pras));
+		$ngperm->setVar('gperm_groupid', $group->getVar('groupid'));
+		$groupperm_handler->insert($ngperm);
 	}
 	
-	if (is_object($GLOBALS['xoopsUser'])) {
+	return true;
 		
-		$modulehandler =& xoops_gethandler('module');
-		$confighandler =& xoops_gethandler('config');
-		$xoModule = $modulehandler->getByDirname('spiders');
-		$xoConfig = $confighandler->getConfigList($xoModule->getVar('mid'),false);
-	
-		if (in_array($xoConfig['bot_group'], $GLOBALS['xoopsUser']->getGroups())) 
-			if ($xoConfig['xortify_shareme']==true) {
-				xoops_load('cache');
-				if (!$result = XoopsCache::read('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'])) {
-					// Connect to API
-					$api = spiders_apimethod();
-					include_once($GLOBALS['xoops']->path('/modules/spiders/class/'.$api.'.php'));
-					$func = strtoupper($api).'SpidersExchange';
-					$exchange = new $func;
-					
-					//Recieve From API
-					$result = $exchange->getSEOLinks();
-					XoopsCache::write('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'], $result, 1200);
-				}
-				$GLOBALS['spiderTpl'] = new XoopsTpl();
-				$GLOBALS['spiderTpl']->assign('spiderseo', $result);
-				$GLOBALS['spiderTpl']->display('db:spiders_footer_seo.html');
-			}
-	}		
-	
+}
+
 ?>

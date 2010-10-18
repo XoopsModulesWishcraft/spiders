@@ -28,49 +28,21 @@
 // URL: http://www.chronolabs.org.au                                         //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
-	
-	
-	$results = NULL;
-	
-	if (!function_exists('spiders_apimethod')) {
-		function spiders_apimethod() {
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="soap")
-					return $ext;
-			}
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="curl")
-					return $ext;
-			}
-			return 'json';
-		}
-	}
-	
-	if (is_object($GLOBALS['xoopsUser'])) {
-		
-		$modulehandler =& xoops_gethandler('module');
-		$confighandler =& xoops_gethandler('config');
-		$xoModule = $modulehandler->getByDirname('spiders');
-		$xoConfig = $confighandler->getConfigList($xoModule->getVar('mid'),false);
-	
-		if (in_array($xoConfig['bot_group'], $GLOBALS['xoopsUser']->getGroups())) 
-			if ($xoConfig['xortify_shareme']==true) {
-				xoops_load('cache');
-				if (!$result = XoopsCache::read('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'])) {
-					// Connect to API
-					$api = spiders_apimethod();
-					include_once($GLOBALS['xoops']->path('/modules/spiders/class/'.$api.'.php'));
-					$func = strtoupper($api).'SpidersExchange';
-					$exchange = new $func;
-					
-					//Recieve From API
-					$result = $exchange->getSEOLinks();
-					XoopsCache::write('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'], $result, 1200);
-				}
-				$GLOBALS['spiderTpl'] = new XoopsTpl();
-				$GLOBALS['spiderTpl']->assign('spiderseo', $result);
-				$GLOBALS['spiderTpl']->display('db:spiders_footer_seo.html');
-			}
-	}		
-	
+
+
+$adminmenu[1]['title'] = _MI_SPIDERS_ADMINMENU1;
+$adminmenu[1]['link'] = "admin/index.php?op=list";
+$adminmenu[1]['icon'] = "images/list.png";
+$adminmenu[2]['title'] = _MI_SPIDERS_ADMINMENU2;
+$adminmenu[2]['link'] = "admin/index.php?op=add";
+$adminmenu[2]['icon'] = "images/add.png";
+$adminmenu[3]['title'] = _MI_SPIDERS_ADMINMENU3;
+$adminmenu[3]['link'] = "admin/index.php?op=listmods";
+$adminmenu[3]['icon'] = "images/list.png";
+$adminmenu[4]['title'] = _MI_SPIDERS_ADMINMENU4;
+$adminmenu[4]['link'] = "admin/index.php?op=import";
+$adminmenu[4]['icon'] = "images/import.png";
+$adminmenu[5]['title'] = _MI_SPIDERS_ADMINMENU5;
+$adminmenu[5]['link'] = "admin/index.php?op=signup&fct=signup";
+$adminmenu[5]['icon'] = "images/import.png";
 ?>

@@ -28,49 +28,31 @@
 // URL: http://www.chronolabs.org.au                                         //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
-	
-	
-	$results = NULL;
-	
-	if (!function_exists('spiders_apimethod')) {
-		function spiders_apimethod() {
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="soap")
-					return $ext;
+
+function xoops_module_pre_uninstall_spiders(&$module) {
+
+		$group_handler =& xoops_gethandler( 'group' );
+		$criteria = new Criteria('group_type', 'Spider');
+		$groups = $group_handler->getObjects($criteria);
+		foreach($groups as $id => $group) 
+		{
+			$groupid = $group->getVar('groupid');
+			$sql = "DELETE FROM ".$GLOBALS['xoopsDB']->prefix('group_permission')." WHERE gperm_groupid = $groupid";
+			$GLOBALS['xoopsDB']->queryF($sql);
+			$sql = "SELECT uid FROM ".$GLOBALS['xoopsDB']->prefix('groups_users_link')." WHERE groupid = $groupid";
+			$users = $GLOBALS['xoopsDB']->queryF($sql);
+			while ($row = $GLOBALS['xoopsDB']->fetchArray($users))
+			{
+				$sql = "DELETE FROM ".$GLOBALS['xoopsDB']->prefix('users')." WHERE uid = ".$row['uid'];
+				$GLOBALS['xoopsDB']->queryF($sql);			
 			}
-			foreach (get_loaded_extensions() as $ext){
-				if ($ext=="curl")
-					return $ext;
-			}
-			return 'json';
+			$sql = "DELETE FROM ".$GLOBALS['xoopsDB']->prefix('groups_users_link')." WHERE groupid = $groupid";
+			$GLOBALS['xoopsDB']->queryF($sql);
+			$sql = "DELETE FROM ".$GLOBALS['xoopsDB']->prefix('groups')." WHERE groupid = $groupid";
+			$GLOBALS['xoopsDB']->queryF($sql);
+			
 		}
-	}
-	
-	if (is_object($GLOBALS['xoopsUser'])) {
-		
-		$modulehandler =& xoops_gethandler('module');
-		$confighandler =& xoops_gethandler('config');
-		$xoModule = $modulehandler->getByDirname('spiders');
-		$xoConfig = $confighandler->getConfigList($xoModule->getVar('mid'),false);
-	
-		if (in_array($xoConfig['bot_group'], $GLOBALS['xoopsUser']->getGroups())) 
-			if ($xoConfig['xortify_shareme']==true) {
-				xoops_load('cache');
-				if (!$result = XoopsCache::read('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'])) {
-					// Connect to API
-					$api = spiders_apimethod();
-					include_once($GLOBALS['xoops']->path('/modules/spiders/class/'.$api.'.php'));
-					$func = strtoupper($api).'SpidersExchange';
-					$exchange = new $func;
-					
-					//Recieve From API
-					$result = $exchange->getSEOLinks();
-					XoopsCache::write('spider_uid%%'.$GLOBALS['xoopsUser']->getVar('uid').'%%'.$xoConfig['bot_group'], $result, 1200);
-				}
-				$GLOBALS['spiderTpl'] = new XoopsTpl();
-				$GLOBALS['spiderTpl']->assign('spiderseo', $result);
-				$GLOBALS['spiderTpl']->display('db:spiders_footer_seo.html');
-			}
-	}		
-	
+   		return true;
+}
+
 ?>
