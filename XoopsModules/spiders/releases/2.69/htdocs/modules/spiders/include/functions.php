@@ -230,7 +230,7 @@ if (!function_exists("apimethod")) {
 if (!function_exists("spiders_obj2array")) {
 	function spiders_obj2array($objects) {
 		$ret = array();
-		if (is_array($objects)) {
+		if (is_array($objects)||is_object($objects)) {
 			foreach($objects as $key => $value) {
 				if (is_a($value, 'stdClass')) {
 					$ret[$key] = spiders_obj2array((array)$value);
@@ -241,9 +241,7 @@ if (!function_exists("spiders_obj2array")) {
 				}
 			}
 			return $ret;
-		} else {
-			return (array)$objects;
-		}
+		} 
 	}
 }
 

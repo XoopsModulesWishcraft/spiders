@@ -8,7 +8,7 @@ foreach (get_loaded_extensions() as $ext){
 
 if ($nativecurl==true) {
 	define('XOOPS_CURLXML_LIB', 'PHPCURLXML');
-	define('XORTIFY_USER_AGENT', 'Mozilla/5.0 (X11; U; Linux i686; pl-PL; rv:1.9.0.2) XOOPS/20100101 XoopsAuth/1.xx (php)');
+	define('XORTIFY_CURLXML_USERAGENT', 'Mozilla/5.0 (X11; U; Linux i686; pl-PL; rv:1.9.0.2) XOOPS/20100101 XoopsAuth/1.xx (php)');
 }
 
 $config_handler =& xoops_gethandler('config');
@@ -46,7 +46,7 @@ class CURLXMLSpidersExchange {
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookies); 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-		curl_setopt($ch, CURLOPT_USERAGENT, XORTIFY_USER_AGENT); 
+		curl_setopt($ch, CURLOPT_USERAGENT, XORTIFY_CURLXML_USERAGENT); 
 		$this->curl_client =& $ch;			
 	}
 	
