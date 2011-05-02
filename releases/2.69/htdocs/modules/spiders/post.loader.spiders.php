@@ -128,11 +128,12 @@
 			$member_handler->insertUser($GLOBALS['xoopsUser'], true);
 
 			$xoopsUserIsAdmin = $GLOBALS['xoopsUser']->isAdmin();
-		
-			if ( in_array( XOOPS_GROUP_BANNED, $GLOBALS['xoopsUser']->getGroups() ) ) {
-				include_once $GLOBALS['xoops']->path( 'include/site-banned.php' );
-				exit();
-			}
+			if ( defined('XOOPS_GROUP_BANNED')) {
+				if ( in_array( XOOPS_GROUP_BANNED, $GLOBALS['xoopsUser']->getGroups() ) ) {
+					include_once $GLOBALS['xoops']->path( 'include/site-banned.php' );
+					exit();
+				}
+			}	
 		} else {
 			$dos_crsafe = array();
 		}
