@@ -55,7 +55,7 @@
 		$ret = array();
 		$total = $robots_handler->getCount(NULL);
 		xoops_load('pagenav');
-		$pagenav = new XoopsPageNav($total, $limit, $start, 'start', 'num='.$limit.'&op='.$_REQUEST['op']);
+		$pagenav = new XoopsPageNav($total, $limit, $start, 'start', 'num='.$limit.'&op='.$op);
 		if (is_object($pagenav))
 			$ret['pagenav'] = $pagenav->renderNav();
 
@@ -131,7 +131,7 @@
 		$ret = array();
 		$total = $statistics_handler->getCount(NULL);
 		xoops_load('pagenav');
-		$pagenav = new XoopsPageNav($total, $limit, $start, 'start', 'num='.$limit.'&op='.$_REQUEST['op']);
+		$pagenav = new XoopsPageNav($total, $limit, $start, 'start', 'num='.$limit.'&op='.$op);
 		if (is_object($pagenav))
 			$ret['pagenav'] = $pagenav->renderNav();
 

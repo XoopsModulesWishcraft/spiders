@@ -30,7 +30,8 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-	define('_MI_SPIDERS_DIRNAME','spiders');
+	if(!defined('_MI_SPIDERS_DIRNAME'))
+		define('_MI_SPIDERS_DIRNAME','spiders');
 	
 	define('_MI_SPIDERS_NAME','Robot Manager');
 	define('_MI_SPIDERS_DESCRIPTION','This module is for robot management');	
@@ -47,9 +48,12 @@
 	define('_MI_SPIDERS_ADMINMENU4', 'Import Robot Definitions');
 	define('_MI_SPIDERS_ADMINMENU5', 'Signup to Xortify.com');		
 	
-	define('_MI_SPIDERS_GROUP_TYPE', 'Spider');
-	define('_MI_SPIDERS_GROUP_NAME', 'Robots, Crawlers & Spiders');
-	define('_MI_SPIDERS_GROUP_DESCRIPTION', 'Robots, Crawlers & Spiders that scan your website and have authority.');	
+	if(!defined('_MI_SPIDERS_GROUP_TYPE'))
+		define('_MI_SPIDERS_GROUP_TYPE', 'Spider');
+	if(!defined('_MI_SPIDERS_GROUP_NAME'))
+		define('_MI_SPIDERS_GROUP_NAME', 'Robots, Crawlers & Spiders');
+	if(!defined('_MI_SPIDERS_GROUP_DESCRIPTION'))
+		define('_MI_SPIDERS_GROUP_DESCRIPTION', 'Robots, Crawlers & Spiders that scan your website and have authority.');	
 	
 	define('_MI_SPIDER_RESERVEDPHRASES', 'Protected Keywords from Useragents');
 	define('_MI_SPIDER_RESERVEDPHRASES_DESC', 'These phrases cannot be a component used in authentication with the site (Seperate with a <strong>|</strong>)');
