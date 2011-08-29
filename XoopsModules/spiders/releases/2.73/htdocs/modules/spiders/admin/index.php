@@ -37,6 +37,7 @@
 	{
 	case "send":
 	
+		set_time_limit(120);
 		$id = intval($_GET['id']);
 		$api = apimethod();
 		include_once($GLOBALS['xoops']->path('/modules/spiders/class/'.$api.'.php'));
@@ -54,6 +55,7 @@
 		break;
 	case "compair-api":
 	
+		set_time_limit(480);
 									
 		$spider_handler = &xoops_getmodulehandler( 'spiders', _MI_SPIDERS_DIRNAME );	
 		$spidermods_handler = &xoops_getmodulehandler( 'modifications', _MI_SPIDERS_DIRNAME );			
@@ -224,6 +226,7 @@
 		break;
 		
 	case "import-file":
+		set_time_limit(240);
 		import_robotstxt_org($_REQUEST['file']);
 		redirect_header('index.php', 3, _AM_SPIDERS_IMPORTCOMPLETE);
 		break;

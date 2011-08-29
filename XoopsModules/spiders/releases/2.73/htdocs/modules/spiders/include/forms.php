@@ -41,13 +41,13 @@
 		
 		$form = new XoopsThemeForm(_AM_SPIDERS_FRM_TITLE, "spiders_member", "", "post");
 		
-		$form->addElement(new XoopsFormText(_AM_SPIDERS_FRM_UNAME, "uname", 35, 128, $_REQUEST['uname']));					
-		$form->addElement(new XoopsFormPassword(_AM_SPIDERS_FRM_PASS, "pass", 35, 128, $_REQUEST['pass']), false);					
-		$form->addElement(new XoopsFormPassword(_AM_SPIDERS_FRM_VPASS, "vpass", 35, 128, $_REQUEST['vpass']), false);					
-		$form->addElement(new XoopsFormText(_AM_SPIDERS_FRM_EMAIL, "email", 35, 128, $_REQUEST['email']));											
-		$form->addElement(new XoopsFormText(_AM_SPIDERS_FRM_URL, "url", 35, 128, $_REQUEST['url']));											
-		$form->addElement(new XoopsFormRadioYN(_AM_SPIDERS_FRM_VIEWEMAIL, "viewemail", $_REQUEST['viewemail']));
-		$form->addElement(new XoopsFormSelectTimezone(_AM_SPIDERS_FRM_TIMEZONE, "timezone", $_REQUEST['timezone']));
+		$form->addElement(new XoopsFormText(_AM_SPIDERS_FRM_UNAME, "uname", 35, 128, (isset($_REQUEST['uname'])?$_REQUEST['uname']:'')));					
+		$form->addElement(new XoopsFormPassword(_AM_SPIDERS_FRM_PASS, "pass", 35, 128, (isset($_REQUEST['pass'])?$_REQUEST['pass']:'')), false);					
+		$form->addElement(new XoopsFormPassword(_AM_SPIDERS_FRM_VPASS, "vpass", 35, 128, (isset($_REQUEST['vpass'])?$_REQUEST['vpass']:'')), false);					
+		$form->addElement(new XoopsFormText(_AM_SPIDERS_FRM_EMAIL, "email", 35, 128, (isset($_REQUEST['email'])?$_REQUEST['email']:'')));											
+		$form->addElement(new XoopsFormText(_AM_SPIDERS_FRM_URL, "url", 35, 128, (isset($_REQUEST['url'])?$_REQUEST['url']:'')));											
+		$form->addElement(new XoopsFormRadioYN(_AM_SPIDERS_FRM_VIEWEMAIL, "viewemail", (isset($_REQUEST['viewemail'])?$_REQUEST['viewemail']:false)));
+		$form->addElement(new XoopsFormSelectTimezone(_AM_SPIDERS_FRM_TIMEZONE, "timezone", (isset($_REQUEST['timezone'])?$_REQUEST['timezone']:'')));
 		$spidersAuth =& XortifyAuthFactory::getAuthConnection(false, apimethod());
 		$myts =& MyTextSanitizer::getInstance();
 		$disclaimer = $spidersAuth->network_disclaimer();
@@ -99,7 +99,7 @@
 		include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
 		$form = new XoopsThemeForm(_AM_SPIDERS_IMPORTFILE, "import", "", "post");
 
-		$fileelement = new XoopsFormSelect(_AM_SPIDERS_FILE, 'file', $file);
+		$fileelement = new XoopsFormSelect(_AM_SPIDERS_FILE, 'file', '');
 		$fileelement->setDescription(_AM_SPIDERS_FILEDESC);
 		
 		foreach($files as $key => $file) {
