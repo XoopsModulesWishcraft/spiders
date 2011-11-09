@@ -1,0 +1,19 @@
+========================================
+ 2011/11/10 05:10:00 Version 2.76 STABLE
+========================================
+ - Changed $pathImageAdmin renamed to $GLOBALS['spidersImageAdmin']  (Wishcraft)
+ - Changed $pathImageIcon renamed to $GLOBALS['spidersImageIcon']  (Wishcraft)
+ - Changed $GLOBALS['xoopsModule'] in module renamed to $GLOBALS['spidersModule'] (Wishcraft)
+ - Changed $GLOBALS['xoopsModuleConfig'] in module renamed to $GLOBALS['spidersModuleConfig'] (Wishcraft)
+ - Changed XOOPS 2.5.x Admin GUI  (Wishcraft)
+ - Changed XOOPS 2.5.x Admin GUI Language Constants for Statistics language/english/admin.php  (Wishcraft)
+ - Changed Admin Menu Language Constants for Statistics language/english/modinfo.php (GUI)  (Wishcraft)
+ - Changed header for control panel and associate PHP files admin/admin_header.php (Wishcraft)
+ - Changed function_exists() - added to functions missing it include/functions.php  (Wishcraft)
+ - Changed Renamed adminMenu() to spiders_adminMenu() - XOOPS 2.5 Admin GUI  (Wishcraft)
+ - Changed cURL timeout set to 900ms - cron/serverup.php  (Wishcraft)
+ - Changed set 'spiders_api' if api port is available true/false - cron/serverup.php  (Wishcraft)
+ - Added header for index and associate PHP files /header.php (Wishcraft)
+ - Added 'spiders_api' Added Preference for Cron to Turn on and off  (Wishcraft)
+ - Added Admin Menu Icons - Frameworks/moduleclass/icons/32 & Frameworks/moduleclass/icons/16  (Wishcraft)
+ 

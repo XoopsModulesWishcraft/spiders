@@ -1,0 +1,8 @@
+EXTRA INSTALLATION:
+
+You may want Xortify to perform better, this is so the missing preloader in the header when a cache file is loaded and then the 
+execution of the PHP is terminated, will now call the footer preloader/add meta class for preloaders.
+
+You need to replace the files within /htdocs of the extra folder to have a better performing system.
+
+This htdocs/header.php is from XOOPS 2.5.x and has been altered at line 92.
