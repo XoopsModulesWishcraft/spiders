@@ -35,12 +35,12 @@ define('_MA_SPIDERS_NOVISIT','No Visit');
 define('_MA_SPIDERS_SPF_NAME','<a href="%s/userinfo.php?uid=%s">%s</a>');
 define('_MA_SPIDERS_LASTINSEO','<a href="%s">%s</a>');
 
-define('_MA_SPIDERS_NAME', 'Robot Name');
-define('_MA_SPIDERS_VALUE', 'Score');
-define('_MA_SPIDERS_LASTIN', 'Local Last In');
-define('_MA_SPIDERS_LASTNETIN', 'Net Last In');
-define('_MA_SPIDERS_HERELAST', 'Last Here');
+define('_MA_SPIDERS_NAME','Robot Name');
+define('_MA_SPIDERS_VALUE','Score');
+define('_MA_SPIDERS_LASTIN','Local Last In');
+define('_MA_SPIDERS_LASTNETIN','Net Last In');
+define('_MA_SPIDERS_HERELAST','Last Here');
 
-define('_AM_SPIDERS_COMPARISONFINISHED', 'Robot Spider Charter Comparison Finished!');
+define('_AM_SPIDERS_COMPARISONFINISHED','Robot Spider Charter Comparison Finished!');
 
 ?>

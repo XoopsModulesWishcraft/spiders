@@ -29,18 +29,18 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-	define('_AM_SPIDERS_IMPORTFILE', 'Select Robot Data file to Import');
-	define('_AM_SPIDERS_FILE', 'Files available in resource');
-	define('_AM_SPIDERS_FILEDESC', 'If you wish to get another copy of supported files please goto <a href="http://www.robotstxt.org/dbexport.html">www.robotstxt.org</a>');
+	define('_AM_SPIDERS_IMPORTFILE','Select Robot Data file to Import');
+	define('_AM_SPIDERS_FILE','Files available in resource');
+	define('_AM_SPIDERS_FILEDESC','If you wish to get another copy of supported files please goto <a href="http://www.robotstxt.org/dbexport.html">www.robotstxt.org</a>');
 
-	define('_AM_SPIDERS_IMPORTCOMPLETE', 'Import is complete');
+	define('_AM_SPIDERS_IMPORTCOMPLETE','Import is complete');
 
 	if(!defined('_MI_SPIDERS_DIRNAME'))
 		define('_MI_SPIDERS_DIRNAME','spiders');
 	if(!defined('_MI_SPIDERS_GROUP_TYPE'))
-		define('_MI_SPIDERS_GROUP_TYPE', 'Spider');
+		define('_MI_SPIDERS_GROUP_TYPE','Spider');
 	if(!defined('_MI_SPIDERS_GROUP_NAME'))
-		define('_MI_SPIDERS_GROUP_NAME', 'Robots, Crawlers & Spiders');
+		define('_MI_SPIDERS_GROUP_NAME','Robots, Crawlers & Spiders');
 	if(!defined('_MI_SPIDERS_GROUP_DESCRIPTION'))
-		define('_MI_SPIDERS_GROUP_DESCRIPTION', 'Robots, Crawlers & Spiders that scan your website and have authority.');	
+		define('_MI_SPIDERS_GROUP_DESCRIPTION','Robots, Crawlers & Spiders that scan your website and have authority.');	
 ?>
