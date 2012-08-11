@@ -33,15 +33,15 @@
 	
 	define('_MI_SPIDERS_NAME','Robot Manager');
 	define('_MI_SPIDERS_DESCRIPTION','This module is for robot management');	
-	define('_MI_SPIDERS_LOGON', 'Logon Session');
-	define('_MI_SPIDERS_LOGONDESC', 'When a robots agent is detected log the bot in under its username.');	
+	define('_MI_SPIDERS_LOGON','Logon Session');
+	define('_MI_SPIDERS_LOGONDESC','When a robots agent is detected log the bot in under its username.');	
 	
-	define('_MI_SPIDERS_MM1', 'Statistics');
-	define('_MI_SPIDERS_MM2', 'Last Here Report');	
-	define('_MI_SPIDERS_ADMINMENU1', 'Add a Robot');
-	define('_MI_SPIDERS_ADMINMENU2', 'Import Robot Definitions');		
+	define('_MI_SPIDERS_MM1','Statistics');
+	define('_MI_SPIDERS_MM2','Last Here Report');	
+	define('_MI_SPIDERS_ADMINMENU1','Add a Robot');
+	define('_MI_SPIDERS_ADMINMENU2','Import Robot Definitions');		
 	
-	define('_MI_SPIDERS_GROUP_TYPE', 'Spider');
-	define('_MI_SPIDERS_GROUP_NAME', 'Robots, Crawlers & Spiders');
-	define('_MI_SPIDERS_GROUP_DESCRIPTION', 'Robots, Crawlers & Spiders that scan your website and have authority.');	
+	define('_MI_SPIDERS_GROUP_TYPE','Spider');
+	define('_MI_SPIDERS_GROUP_NAME','Robots, Crawlers & Spiders');
+	define('_MI_SPIDERS_GROUP_DESCRIPTION','Robots, Crawlers & Spiders that scan your website and have authority.');	
 ?>
